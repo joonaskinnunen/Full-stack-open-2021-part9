@@ -1,3 +1,20 @@
+
+const parseExerCalcArguments = (args: Array<string>) => {
+    if (args.length < 4) throw new Error('Not enough arguments');
+    let hours: number[] = []
+    for (let i = 3; i < args.length; i++) {
+        if (isNaN(Number(args[i]))) {
+            throw new Error('Provided values were not all numbers!');
+        } else {
+            hours.push(Number(args[i]))
+        }
+    }
+    return {
+        target: Number(args[2]),
+        hours: hours
+    }
+}
+
 const calculateExercises = (hours: Array<number>, target: number): returnObj => {
     let trainingDays = 0
     let trainingHours = 0
@@ -39,4 +56,9 @@ interface returnObj {
     average: number
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2))
+try {
+    const { target, hours } = parseExerCalcArguments(process.argv)
+    console.log(calculateExercises(hours, target))
+} catch (e) {
+    console.log('Error, something bad happened, message: ', e.message)
+}
