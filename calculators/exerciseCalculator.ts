@@ -1,37 +1,36 @@
-
 const parseExerCalcArguments = (args: Array<string>) => {
     if (args.length < 4) throw new Error('Not enough arguments');
-    let hours: number[] = []
+    const hours: number[] = [];
     for (let i = 3; i < args.length; i++) {
         if (isNaN(Number(args[i]))) {
             throw new Error('Provided values were not all numbers!');
         } else {
-            hours.push(Number(args[i]))
+            hours.push(Number(args[i]));
         }
     }
     return {
         target: Number(args[2]),
         hours: hours
-    }
-}
+    };
+};
 
 const calculateExercises = (hours: Array<number>, target: number): returnObj => {
-    let trainingDays = 0
-    let trainingHours = 0
-    hours.map(x => x > 0 && trainingDays++)
-    hours.map(x => trainingHours += x)
-    const average = trainingHours / hours.length
+    let trainingDays = 0;
+    let trainingHours = 0;
+    hours.map(x => x > 0 && trainingDays++);
+    hours.map(x => trainingHours += x);
+    const average = trainingHours / hours.length;
     let rating, ratingDescription;
 
     if (average > target * 0.9) {
-        rating = 3
-        ratingDescription = "Excellent!"
+        rating = 3;
+        ratingDescription = "Excellent!";
     } else if (average > target * 0.6) {
-        rating = 2
-        ratingDescription = "not too bad but could be better"
+        rating = 2;
+        ratingDescription = "not too bad but could be better";
     } else {
-        rating = 1
-        ratingDescription = "you should work harder"
+        rating = 1;
+        ratingDescription = "you should work harder";
     }
     const obj = {
         periodLength: hours.length,
@@ -41,10 +40,10 @@ const calculateExercises = (hours: Array<number>, target: number): returnObj => 
         ratingDescription: ratingDescription,
         target: target,
         average: average
-    }
+    };
 
-    return obj
-}
+    return obj;
+};
 
 interface returnObj {
     periodLength: number,
@@ -57,8 +56,8 @@ interface returnObj {
 }
 
 try {
-    const { target, hours } = parseExerCalcArguments(process.argv)
-    console.log(calculateExercises(hours, target))
+    const { target, hours } = parseExerCalcArguments(process.argv);
+    console.log(calculateExercises(hours, target));
 } catch (e) {
-    console.log('Error, something bad happened, message: ', e.message)
+    console.log('Error, something bad happened, message: ', e.message);
 }
