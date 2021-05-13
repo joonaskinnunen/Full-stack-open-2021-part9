@@ -8,7 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const app = express_1.default();
 app.use(express_1.default.json());
 app.use(cors_1.default());
-app.get("/ping", (_req, res) => {
+app.get("/api/ping", (_req, res) => {
     res.send("pong");
 });
 const PORT = process.env.PORT || 3001;
