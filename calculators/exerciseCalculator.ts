@@ -1,4 +1,4 @@
-const parseExerCalcArguments = (args: Array<string>) => {
+/* const parseExerCalcArguments = (args: Array<string>) => {
     if (args.length < 4) throw new Error('Not enough arguments');
     const hours: number[] = [];
     for (let i = 3; i < args.length; i++) {
@@ -12,9 +12,9 @@ const parseExerCalcArguments = (args: Array<string>) => {
         target: Number(args[2]),
         hours: hours
     };
-};
+}; */
 
-const calculateExercises = (hours: Array<number>, target: number): returnObj => {
+export const calculateExercises = (hours: Array<number>, target: number): returnObj => {
     let trainingDays = 0;
     let trainingHours = 0;
     hours.map(x => x > 0 && trainingDays++);
@@ -55,9 +55,9 @@ interface returnObj {
     average: number
 }
 
-try {
+/* try {
     const { target, hours } = parseExerCalcArguments(process.argv);
     console.log(calculateExercises(hours, target));
 } catch (e) {
     console.log('Error, something bad happened, message: ', e.message);
-}
+} */
